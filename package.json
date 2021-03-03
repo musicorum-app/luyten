@@ -1,0 +1,40 @@
+{
+  "name": "luyten",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "babel-node -r dotenv/config src/index.js",
+    "clean": "rm -rf ./dist && mkdir dist",
+    "build": "npm run clean && babel src -d dist"
+  },
+  "keywords": [],
+  "author": "Matheus Dias <methidezeeni@gmail.com>",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "@babel/cli": "^7.11.6",
+    "@babel/core": "^7.11.6",
+    "@babel/node": "^7.10.5",
+    "@babel/plugin-transform-modules-commonjs": "^7.10.4",
+    "@babel/plugin-transform-runtime": "^7.11.5",
+    "@babel/preset-env": "^7.11.5",
+    "@musicorum/quadro": "^1.1.2",
+    "canvas": "^2.7.0",
+    "chalk": "^4.1.0",
+    "chroma-js": "^2.1.0",
+    "express": "^4.17.1",
+    "imagemin": "^7.0.1",
+    "imagemin-webp": "^6.0.0",
+    "node-fetch": "^2.6.1",
+    "winston": "^3.3.3",
+    "yaml": "^1.10.0"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "eslint": "^7.9.0",
+    "eslint-config-standard": "^14.1.1",
+    "nodemon": "^2.0.4"
+  }
+}

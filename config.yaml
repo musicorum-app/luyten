@@ -1,0 +1,6 @@
+name: Procyon
+media_path: ../share/media/
+export_path: ../share/export/
+
+themes:
+  - duotone
