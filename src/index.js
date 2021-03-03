@@ -34,7 +34,7 @@ const loadRoutes = async () => {
   return router
 }
 
-const port = process.env.PORT || 80
+const port = process.env.PORT || 9815
 
 loadRoutes()
   .then(router => app.use(router))
