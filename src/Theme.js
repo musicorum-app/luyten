@@ -5,6 +5,7 @@ import imageminWebp from 'imagemin-webp'
 import { existsAsync, hash } from './utils'
 import { loadImage } from 'canvas'
 import fetch from 'node-fetch'
+import { performance } from 'perf_hooks'
 
 export default class Theme {
   constructor (name, {
@@ -17,21 +18,37 @@ export default class Theme {
   }
 
   async generate (options) {
-    const canvas = await (options.story ? this.renderStory(options) : this.render(options))
+    const start = performance.now()
 
-    const exportPath = path.resolve(__dirname, '..', this.config.export_path, `${options.id}.webp`)
+    try {
+      const canvas = await (options.story ? this.renderStory(options) : this.render(options))
 
-    const buff = await imagemin.buffer(await canvas.toBuffer(), {
-      plugins: [
-        imageminWebp({
-          quality: 90
-        })
-      ]
-    })
+      const fileName = `${options.id}.webp`
+      const exportPath = path.resolve(__dirname, '..', this.config.export_path, fileName)
 
-    await fs.writeFile(exportPath, buff)
-    return {
-      file: exportPath
+      const buff = await imagemin.buffer(await canvas.toBuffer(), {
+        plugins: [
+          imageminWebp({
+            quality: 90
+          })
+        ]
+      })
+
+      await fs.writeFile(exportPath, buff)
+      return {
+        file: fileName,
+        duration: (performance.now() - start) / 1000
+      }
+    } catch (e) {
+      const msg = 'Rendering error: ' + e.message
+
+      this.logger.error(msg)
+      console.error(e)
+      return {
+        code: 500,
+        error: 'RENDERING_ERROR',
+        message: msg
+      }
     }
   }
 
