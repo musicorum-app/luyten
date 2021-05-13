@@ -8,7 +8,7 @@ export default ({
     const { theme } = body
 
     if (!config.themes.includes(theme)) {
-      res.status(400).json({
+      return res.status(400).json({
         code: 400,
         error: 'THEME_NOT_FOUND',
         message: 'Theme not found.'

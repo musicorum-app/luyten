@@ -4,3 +4,4 @@ export_path: ../share/export/
 
 themes:
   - duotone
+  - tops
