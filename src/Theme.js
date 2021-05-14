@@ -17,7 +17,7 @@ export default class Theme {
     this.name = name
   }
 
-  async generate (options) {
+  async generate (res, options) {
     const start = performance.now()
 
     try {
@@ -34,21 +34,27 @@ export default class Theme {
         ]
       })
 
+      if (process.env.ALLOW_PREVIEW === 'true' && options.show_preview) {
+        res.contentType('image/webp')
+        return res.end(buff, 'binary')
+      }
+
       await fs.writeFile(exportPath, buff)
-      return {
+
+      res.json({
         file: fileName,
         duration: (performance.now() - start) / 1000
-      }
+      })
     } catch (e) {
       const msg = 'Rendering error: ' + e.message
 
       this.logger.error(msg)
       console.error(e)
-      return {
+      res.json({
         code: 500,
         error: 'RENDERING_ERROR',
         message: msg
-      }
+      })
     }
   }
 
@@ -66,10 +72,10 @@ export default class Theme {
   }
 
   async render () {
-    throw new Error(`The render() function of ${this.name} isn't implemented.`)
+    throw new Error(`The render() function of '${this.name}' theme isn't implemented.`)
   }
 
   async renderStory () {
-    throw new Error(`The renderStory() function of ${this.name} isn't implemented.`)
+    throw new Error(`The renderStory() function of '${this.name}' theme isn't implemented.`)
   }
 }

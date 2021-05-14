@@ -15,6 +15,6 @@ export default ({
       })
     }
 
-    res.json(await themes[theme].generate(body))
+    return themes[theme].generate(res, body)
   })
 }
