@@ -22,12 +22,9 @@ export default class TopsTheme extends Theme {
     const avatarImage = await qdr.loadImage(user.image)
     const images = await Promise.all(data.items.map(i => qdr.loadImage(i.image)))
 
-    // qdr.globalAlpha = 0.5
-
     // Background
     qdr.imageFit = 'cover'
     qdr.drawImage(avatarImage, 0, 0, qdr.width, qdr.height)
-    // qdr.blurArea(0, 0, qdr.width, qdr.height, 25)
 
     StackBlur.canvasRGB(canvas, 0, 0, qdr.width, qdr.height, 30)
 
@@ -110,8 +107,6 @@ export default class TopsTheme extends Theme {
 
     const avatarImage = await qdr.loadImage(user.image)
     const images = await Promise.all(data.items.map(i => qdr.loadImage(i.image)))
-
-    // qdr.globalAlpha = 0.5
 
     // Background
     qdr.imageFit = 'cover'
