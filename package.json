@@ -9,7 +9,7 @@
     "dev": "babel-node -r dotenv/config src/index.js",
     "watch": "nodemon --exec babel-node -r dotenv/config src/index.js",
     "clean": "rm -rf ./dist && mkdir dist",
-    "build": "npm run clean && babel src -d dist"
+    "build": "npm run clean && babel src -d dist && cp -r src/assets dist/assets"
   },
   "keywords": [],
   "author": "Matheus Dias <methidezeeni@gmail.com>",
