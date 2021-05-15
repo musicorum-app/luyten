@@ -4,18 +4,6 @@ import chroma from 'chroma-js'
 import { Quadro } from '@musicorum/quadro'
 import { STORY_HEIGHT, STORY_WIDTH } from '../constants'
 
-const colorsPallete = {
-  PURPLISH: ['#16006F', '#F7396F'],
-  NATURAL: ['#1A2A56', '#00D574'],
-  DIVERGENT: ['#7a004f', '#80f8f8'],
-  SUN: ['#EA1264', '#D7FD31'],
-  YELLISH: ['#141209', '#ffea00'],
-  HORROR: ['#131313', '#B71C1C'],
-  SEA: ['#0239d8', '#68ebc1'],
-  REEN: ['#C1384C', '#00DC72'],
-  NEON: ['#732fd0', '#44ff94']
-}
-
 export default class DuotoneTheme extends Theme {
   constructor (data) {
     super('duotone', data)
@@ -31,7 +19,7 @@ export default class DuotoneTheme extends Theme {
     const ctx = canvas.getContext('2d')
     const qdr = new Quadro(ctx, nodeCanvas)
 
-    const palette = colorsPallete[data.palette]
+    const { palette } = data
 
     qdr.fillStyle = palette[1]
     qdr.fillRect(0, 0, qdr.width, qdr.height)
@@ -168,7 +156,7 @@ export default class DuotoneTheme extends Theme {
     const ctx = canvas.getContext('2d')
     const qdr = new Quadro(ctx, nodeCanvas)
 
-    const palette = colorsPallete[data.palette]
+    const { palette } = data
 
     qdr.fillStyle = palette[1]
     qdr.fillRect(0, 0, qdr.width, qdr.height)
